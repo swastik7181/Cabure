@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Caburé — Compare cab fares in one glance</title>
+<meta name="description" content="Compare live Uber, Ola, and Meru fares side by side, with route mapping and a downloadable report." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+
+  <div class="dispatch-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark">C</span>
+      <span class="brand-name">Caburé</span>
+    </div>
+    <p class="brand-tag">the dispatch console for your next ride</p>
+  </header>
+
+  <main>
+    <!-- HERO / ROUTE CONSOLE -->
+    <section class="console" aria-label="Trip details">
+      <div class="console-heading">
+        <span class="eyebrow">FARE MANIFEST · LIVE</span>
+        <h1>Where are you headed?</h1>
+        <p class="console-sub">
+          Enter your pickup and drop-off. Caburé pulls live estimates from Uber, Ola, and Meru,
+          maps the route, and hands you one clean comparison.
+        </p>
+      </div>
+
+      <form id="compare-form" class="route-panel" novalidate>
+        <div class="stop stop-origin">
+          <label for="source">FROM</label>
+          <input
+            id="source"
+            name="source"
+            type="text"
+            placeholder="Pickup location"
+            autocomplete="off"
+            required
+          />
+          <span class="pin pin-origin" aria-hidden="true"></span>
+        </div>
+
+        <div class="route-line" aria-hidden="true">
+          <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+            <line x1="2" y1="12" x2="98" y2="12" class="route-line-dash" />
+          </svg>
+        </div>
+
+        <div class="stop stop-destination">
+          <label for="destination">TO</label>
+          <input
+            id="destination"
+            name="destination"
+            type="text"
+            placeholder="Drop-off location"
+            autocomplete="off"
+            required
+          />
+          <span class="pin pin-destination" aria-hidden="true"></span>
+        </div>
+
+        <div class="email-toggle-row">
+          <label class="checkbox-row">
+            <input type="checkbox" id="email-toggle" />
+            <span>Email me a copy of the report</span>
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            class="email-input hidden"
+            autocomplete="off"
+          />
+        </div>
+
+        <button type="submit" class="dispatch-btn" id="submit-btn">
+          <span class="btn-label">Compare fares</span>
+          <span class="btn-spinner hidden" aria-hidden="true"></span>
+        </button>
+
+        <p class="mock-note" id="mock-note" hidden>
+          Demo mode: showing sample fares instead of a live scrape. Set <code>USE_MOCK_DATA=false</code>
+          on the backend to fetch real fares.
+        </p>
+      </form>
+    </section>
+
+    <!-- ERROR STATE -->
+    <section id="error-panel" class="error-panel hidden" role="alert">
+      <p id="error-message"></p>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="results" class="results hidden" aria-label="Comparison results">
+
+      <div class="results-header">
+        <div>
+          <span class="eyebrow">MANIFEST RESULT</span>
+          <h2 id="results-route-title">—</h2>
+        </div>
+        <a id="pdf-link" class="pdf-link" href="#" target="_blank" rel="noopener">Download PDF report ↓</a>
+      </div>
+
+      <div class="route-summary-card">
+        <div class="route-summary-text">
+          <dl>
+            <div><dt>Duration</dt><dd id="route-duration">—</dd></div>
+            <div><dt>Distance</dt><dd id="route-distance">—</dd></div>
+            <div><dt>Route</dt><dd id="route-desc">—</dd></div>
+          </dl>
+          <p id="route-traffic-note" class="traffic-note"></p>
+        </div>
+        <div class="route-map-frame">
+          <img id="map-screenshot" alt="Map of the route" />
+          <div id="map-fallback" class="map-fallback">Map preview unavailable for this trip</div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3>Fares by vehicle type</h3>
+        <div class="chart-wrap">
+          <canvas id="fares-chart" height="260"></canvas>
+        </div>
+      </div>
+
+      <div class="manifest-grid" id="manifest-grid">
+        <!-- service ticket cards injected by JS -->
+      </div>
+
+      <p class="disclaimer">
+        Fares are live estimates pulled from each provider's own site and can change by the time
+        you book. Caburé isn't affiliated with Uber, Ola, or Meru — tap "Book" to confirm the
+        final price on their app.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Caburé — built for people who hate opening three apps to book one ride.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

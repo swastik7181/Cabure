@@ -1,0 +1,41 @@
+{
+  "route": {
+    "duration": "1 hr 7 min",
+    "distance": "60.1 km",
+    "route": "via Noida-Greater Noida Expy and Mahatma Gandhi Marg/Ring Rd",
+    "trafficNote": "Fastest route now, despite traffic conditions",
+    "screenshotFile": null
+  },
+  "fares": [
+    {
+      "Service": "Uber",
+      "Details": [
+        { "Type": "Bike", "Fare": "399.46" },
+        { "Type": "Auto", "Fare": "424.58" },
+        { "Type": "Hatchback", "Fare": "716.20" },
+        { "Type": "Sedan", "Fare": "801.08" },
+        { "Type": "SUV", "Fare": "1338.00" }
+      ]
+    },
+    {
+      "Service": "Ola",
+      "Details": [
+        { "Type": "Bike", "Fare": "752.72" },
+        { "Type": "Auto", "Fare": "552.00" },
+        { "Type": "Hatchback", "Fare": "475.71" },
+        { "Type": "Sedan", "Fare": "866.86" },
+        { "Type": "SUV", "Fare": "1430.86" }
+      ]
+    },
+    {
+      "Service": "Meru",
+      "Details": [
+        { "Type": "Bike", "Fare": "NOT AVAILABLE" },
+        { "Type": "Auto", "Fare": "NOT AVAILABLE" },
+        { "Type": "Hatchback", "Fare": "1036" },
+        { "Type": "Sedan", "Fare": "1326" },
+        { "Type": "SUV", "Fare": "1595" }
+      ]
+    }
+  ]
+}
